@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div *ngIf="product$ | async as product" class="product-details">
+  <img [src]="product.image" alt="{{ product.title }}" class="product-details__image" />
+  <div class="product-details__info">
+    <h1 class="product-details__title">{{ product.title }}</h1>
+    <p class="product-details__description">{{ product.description }}</p>
+
+    <!-- Exibição do preço total, baseado na quantidade -->
+    <p class="product-details__price">
+      <strong>{{ totalPrice | currency }}</strong>
+    </p>
+
+    <!-- Controle de quantidade -->
+    <div app-count>
+      <button (click)="changeQuantity(product, -1)">-</button>
+      <span>{{ quantity }}</span>
+      <button (click)="changeQuantity(product, 1)">+</button>
+    </div>
+
+    <!-- Botão para comprar -->
+    <app-button
+      [label]="'Comprar agora'"
+      (click)="buyNow(product)"
+      [type]="'primary'"
+      class="button">
+    </app-button>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+.product-details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 50px 0px;
+  gap: 30px;
+
+  &__image {
+    width: 48%;
+    max-width: 300px;
+  }
+
+  &__info {
+    width: 48%;
+    min-width: 250px;
+    margin: auto 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+
+    @media screen and (max-width: 731px){
+      text-align: center;
+    }
+  }
+
+  &__title {
+    color: var(--gray);
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  &__price {
+    margin: 15px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  &__description {
+    font-size: 0.9rem;
+  }
+}

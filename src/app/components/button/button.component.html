@@ -1,0 +1,7 @@
+<button *ngIf="url" [routerLink]="url" [ngClass]="type" class="dynamic-button">
+  {{ label }}
+</button>
+
+<button *ngIf="!url" [attr.href]="url" [ngClass]="type" class="dynamic-button" target="_blank">
+  {{ label }}
+</button>

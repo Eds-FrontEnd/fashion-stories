@@ -1,0 +1,53 @@
+<header class="header">
+  <div class="header__logo">
+    <a href="/" aria-label="Página inicial">
+      <img src="../../../assets/img/logo.png" alt="Fashion Style Logo" />
+    </a>
+  </div>
+
+  <!-- Botão de toggle do menu -->
+  <button
+    class="header__menu-toggle"
+    aria-label="Abrir menu"
+    [attr.aria-expanded]="menuOpen"
+    aria-controls="main-menu"
+    (click)="toggleMenu()"
+  >
+    <mat-icon>{{ menuOpen ? "close" : "menu" }}</mat-icon>
+  </button>
+
+  <!-- Menu -->
+  <nav
+    class="header__menu"
+    id="main-menu"
+    aria-label="Menu principal"
+    [ngClass]="{ 'header__menu--open': menuOpen }"
+  >
+    <ul>
+      <li>
+        <a href="/" title="Lista de produtos">Produtos</a>
+      </li>
+      <li>
+        <a href="/colecoes" title="Confira nossas coleções">Coleções</a>
+      </li>
+      <li>
+        <a href="/novidades" title="Veja nossas novidades">Novidades</a>
+      </li>
+      <li>
+        <a href="/sobre-nos" title="Saiba mais sobre nós">Sobre nós</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Botão do carrinho com contador de itens -->
+  <button
+    class="header__pay"
+    aria-label="Abrir carrinho de compras"
+    title="Abrir carrinho de compras"
+    [routerLink]="['/checkout']"
+  >
+    <mat-icon>shopping_cart</mat-icon>
+    <span class="cart-item-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+    <span class="sr-only">Carrinho de compras</span>
+  </button>
+</header>

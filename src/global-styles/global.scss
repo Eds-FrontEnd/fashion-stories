@@ -1,0 +1,36 @@
+@import url(./colors.scss);
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+  text-decoration: none;
+}
+
+body{
+  @media screen and (max-width: 320px){
+    min-width: 300px;
+  }
+}
+
+.quantity-control {
+  display: flex;
+  margin: 15px;
+  gap: 15px;
+
+  @media screen and (max-width: 731px){
+    justify-content: center;
+  }
+
+  button{
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    border: none;
+    background-color: var(--gray-light);
+    color: var(--black);
+    cursor: pointer;
+  }
+}

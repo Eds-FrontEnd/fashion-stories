@@ -1,0 +1,38 @@
+<div class="checkout-container">
+  <mat-icon [routerLink]="['/']">arrow_back Voltar</mat-icon>
+  <h1>Resumo da Compra</h1>
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <ul>
+      <li *ngFor="let item of cartItems; let i = index">
+        <div class="cart-item">
+          <img [src]="item.product.image" alt="{{ item.product.title }}" class="cart-item__image"/>
+          <div class="cart-item__details">
+            <h2>{{ item.product.title }}</h2>
+            <p>Quantidade: {{ item.quantity }}</p>
+            <p>Preço: {{ item.product.price | currency }}</p>
+            <p>Total: {{ (item.quantity * item.product.price) | currency }}</p> <!-- Total individual do item -->
+            <div>
+              <!-- Controle de quantidade -->
+              <div app-count>
+                <button (click)="changeQuantity(item, -1)">-</button>
+                <span>{{ item.quantity }}</span>
+                <button (click)="changeQuantity(item, 1)">+</button>
+                <button (click)="removeItem(i)"><mat-icon>delete</mat-icon></button> <!-- Botão para remover o item -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <h3>Total do Carrinho: {{ totalAmount | currency }}</h3> <!-- Total acumulado do carrinho -->
+    <app-button
+      [label]="'Finalizar Compra'"
+      (click)="endBuy()"
+      [type]="'primary'"
+      class="button">
+    </app-button>
+  </div>
+  <ng-template #emptyCart>
+    <p>Seu carrinho está vazio.</p>
+  </ng-template>
+</div>
