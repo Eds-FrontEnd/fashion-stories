@@ -1,5 +1,6 @@
+<main>
 <app-header></app-header>
-<div *ngIf="product$ | async as product" class="product-details">
+<div *ngIf="product$ | async as product; else loading" class="product-details">
   <img [src]="product.image" alt="{{ product.title }}" class="product-details__image" />
   <div class="product-details__info">
     <h1 class="product-details__title">{{ product.title }}</h1>
@@ -26,3 +27,11 @@
     </app-button>
   </div>
 </div>
+
+<ng-template #loading>
+  <section role="status" aria-live="polite" class="loading-text">
+    <p>Carregando...</p>
+  </section>
+</ng-template>
+</main>
+

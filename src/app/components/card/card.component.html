@@ -1,46 +1,53 @@
 <main class="cards">
-  <section *ngFor="let card of (productsByPromise | async)" class="cards__item">
-    <article class="card">
-      <header class="card__footer">
-        <img
-          [src]="card.image"
-          [alt]="'Image of ' + card.title"
-          class="card__image"
-          width="210"
-          height="310" />
-      </header>
+  <ng-container *ngIf="productsByPromise | async as products; else loading">
+    <section *ngFor="let card of products" class="cards__item">
+      <article class="card">
+        <header class="card__footer">
+          <img
+            [src]="card.image"
+            [alt]="'Image of ' + card.title"
+            class="card__image"
+            width="210"
+            height="310" />
+        </header>
 
-      <!-- Exibindo estrelas de avaliação -->
-      <div class="card__rating">
-        <span class="stars">
-          <ng-container *ngFor="let star of getStars(card.rating.rate); let i = index">
-            <mat-icon *ngIf="star === 'full'" class="star">star</mat-icon>
-            <mat-icon *ngIf="star === 'half'" class="star">star_half</mat-icon>
-            <mat-icon *ngIf="star === 'empty'" class="star">star_border</mat-icon>
-          </ng-container>
-          {{ card.rating.count }} avaliações
-        </span>
-      </div>
+        <!-- Exibindo estrelas de avaliação -->
+        <div class="card__rating">
+          <span class="stars">
+            <ng-container *ngFor="let star of getStars(card.rating.rate); let i = index">
+              <mat-icon *ngIf="star === 'full'" class="star">star</mat-icon>
+              <mat-icon *ngIf="star === 'half'" class="star">star_half</mat-icon>
+              <mat-icon *ngIf="star === 'empty'" class="star">star_border</mat-icon>
+            </ng-container>
+            {{ card.rating.count }} avaliações
+          </span>
+        </div>
 
-      <section class="card__info">
-        <footer class="card__header">
-          <h2 class="card__title">{{ card.title | truncate : 30 }}</h2>
-        </footer>
-        <p class="card__price">
-          <strong>{{ card.price | currency }}</strong>
-        </p>
+        <section class="card__info">
+          <footer class="card__header">
+            <h2 class="card__title">{{ card.title | truncate : 30 }}</h2>
+          </footer>
+          <p class="card__price">
+            <strong>{{ card.price | currency }}</strong>
+          </p>
 
-        <!-- Alterado o botão para usar routerLink com o id do produto -->
-        <app-button
-          [label]="'Saiba mais do produto'"
-          [type]="'primary'"
-          class="button"
-          autocomplete="current-password"
-          [routerLink]="['/product', card.id]"
-          >
-        </app-button>
-      </section>
-    </article>
+          <!-- Alterado o botão para usar routerLink com o id do produto -->
+          <app-button
+            [label]="'Saiba mais do produto'"
+            [type]="'primary'"
+            class="button"
+            autocomplete="current-password"
+            [routerLink]="['/product', card.id]">
+          </app-button>
+        </section>
+      </article>
+    </section>
+  </ng-container>
+
+<ng-template #loading>
+  <section role="status" aria-live="polite" class="loading-text">
+    <p>Carregando...</p>
   </section>
-</main>
+</ng-template>
 
+</main>
