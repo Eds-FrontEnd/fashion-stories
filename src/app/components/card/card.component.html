@@ -1,5 +1,5 @@
 <main class="cards">
-  <section *ngFor="let card of (productsByPromise | async)" class="cards__item" [routerLink]="['/product', card.id]">
+  <section *ngFor="let card of (productsByPromise | async)" class="cards__item">
     <article class="card">
       <header class="card__footer">
         <img
@@ -18,7 +18,7 @@
             <mat-icon *ngIf="star === 'half'" class="star">star_half</mat-icon>
             <mat-icon *ngIf="star === 'empty'" class="star">star_border</mat-icon>
           </ng-container>
-          {{ card.rating.count }} - avaliações
+          {{ card.rating.count }} avaliações
         </span>
       </div>
 
@@ -35,7 +35,9 @@
           [label]="'Saiba mais do produto'"
           [type]="'primary'"
           class="button"
-          autocomplete="current-password">
+          autocomplete="current-password"
+          [routerLink]="['/product', card.id]"
+          >
         </app-button>
       </section>
     </article>
